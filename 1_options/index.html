@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>vuejs&lt;options</title>
+    <script src="../lib/vue.js"></script>
+</head>
+<body>
+<div id="container">asdffffff</div>
+
+<script type="x-template" id="html_tmpl">
+    <span v-demo="pwd">{{pwd|touppercase}}</span>{{uin}}
+</script>
+<script>
+    (function () {
+
+
+        /*Vue.directive('demo', {
+            bind: function () {
+                console.log('bind');
+            },
+            update: function (newValue, oldValue) {
+                console.log('update');
+
+            },
+            unbind: function () {
+                console.log('unbind');
+            }
+        });*/
+
+        var options = {
+            el: '#container',
+            data: {
+                uin: '2222',
+                pwd: 'ssssss'
+            },
+            //方法
+            methods: {
+               login: function () {
+               }
+            },
+            //可推导的属性
+            computed: {
+                uinWrapper: {
+                    get: function () {
+                        return this.uin;
+                    },
+                    set: function (val) {
+                        this.uin = val;
+                    }
+
+                },
+                pwdGetter: function (val) {
+                    return this.uin;
+                }
+            },
+            template: '#html_tmpl',
+            //replace: true//
+
+            //生命周期回调
+            created: function () {
+                console.log('created');
+            },
+            beforeCompile: function () {
+                console.log('beforeCompile');
+            },
+            compiled: function () {
+                console.log('compiled');
+            },
+            attached: function () {
+                console.log('attached');
+            },
+            ready: function () {
+                console.log('ready');
+            },
+            beforeDestroy: function () {
+                console.log('beforeDestroy');
+            },
+            detached: function () {
+                console.log('detached');
+            },
+            destroyed: function () {
+                console.log('destroyed');
+            },
+
+            directives: {
+                'demo': {
+                    bind: function () {
+                        console.log('bind');
+                    },
+                    update: function (newValue, oldValue) {
+                        console.log('update');
+
+                    },
+                    unbind: function () {
+                        console.log('unbind');
+                    }
+                }
+
+            },
+            filters: {
+                'touppercase': function (value) {
+                    return (value + '').toUpperCase();
+                }
+            }
+
+        };
+        var vue = new Vue(options);
+        //var vue = new Vue(options).$destroy(true);
+
+        setTimeout(function () {
+            vue.pwd = 'yy';
+        }, 300);
+
+    }());
+
+</script>
+
+</body>
+</html>
